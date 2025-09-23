@@ -1,10 +1,14 @@
-<!-- index.html -->
 <script>
-(async()=>{
-  const p = new URLSearchParams(location.search);
-  const uid = p.get('uid'), day = p.get('day');
-  const key = `u${uid}_${day}`;
-  const used = localStorage.getItem(key)|0;
-  document.write(used);   // 纯数字输出，给脚本读
-})();
+// 返回格式：uid1,seconds1\nuid2,seconds2
+const day = new URLSearchParams(location.search).get('day');
+const prefix = `day${day}_`;
+const lines = [];
+for (let i = 0; i < localStorage.length; i++) {
+  const k = localStorage.key(i);
+  if (k.startsWith(prefix)) {
+    const uid = k.slice(prefix.length);
+    lines.push(`${uid},${localStorage.getItem(k)}`);
+  }
+}
+document.write(lines.join('\n'));
 </script>
