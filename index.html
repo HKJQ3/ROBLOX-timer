@@ -1,0 +1,10 @@
+<!-- index.html -->
+<script>
+(async()=>{
+  const p = new URLSearchParams(location.search);
+  const uid = p.get('uid'), day = p.get('day');
+  const key = `u${uid}_${day}`;
+  const used = localStorage.getItem(key)|0;
+  document.write(used);   // 纯数字输出，给脚本读
+})();
+</script>
