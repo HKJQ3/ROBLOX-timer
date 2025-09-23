@@ -1,0 +1,9 @@
+<!-- report.html -->
+<script>
+(async()=>{
+  const p = new URLSearchParams(await request.text());
+  const uid = p.get('uid'), day = p.get('day'), used = p.get('used');
+  localStorage.setItem(`u${uid}_${day}`, used);
+  document.write('ok');
+})();
+</script>
